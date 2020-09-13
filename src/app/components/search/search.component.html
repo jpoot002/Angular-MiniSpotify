@@ -1,0 +1,7 @@
+<div class="row rowpersonal animated fadeIn">
+  <div class="col">
+    <input #BuscarArtista type="text" (keyup)="Buscador(BuscarArtista.value)" class="form-control" placeholder="Buscar Artista">
+  </div>
+</div>
+<app-loading *ngIf="loading"></app-loading>
+<app-tarjetas *ngIf="!loading" [Newreleases]="Artistas"> </app-tarjetas>
