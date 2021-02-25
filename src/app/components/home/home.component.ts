@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
     .subscribe((NeWreleases:any) => {
       this.Newreleases =NeWreleases;
       this.loading= false;
+      console.log(this.Newreleases);
     }),(errorser)=> {
       console.log(errorser.error.error);
     }

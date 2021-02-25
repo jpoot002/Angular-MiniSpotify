@@ -1,0 +1,43 @@
+.st-navbar-desktop-wrapper {
+  font-family: inherit;
+  position: absolute;
+  width: 100%;
+  z-index: 1030;
+}
+.st-navbar-desktop-fixed {
+  position: fixed;
+  bottom: 0%;
+}
+.containe{
+  padding: .5%;
+  padding-left: 20%;
+  padding-right: 20%;
+}
+.st-navbar-desktop {
+  height: 100px;
+
+}
+.st-navbar-desktop:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: rgba(33, 33, 33, 0.8);
+}
+
+
+
+.carousel {
+	padding: 0 0px;
+}
+.carousel .carousel-item {
+	color: #ffffff;
+
+}
+.carousel .carousel-item .img-box {
+	width: 80px;
+	height: 80px;
+}
+

@@ -129,6 +129,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "MiniSpotify"
+    }
+  },
+  "defaultProject": "MiniSpotify",
+  "cli": {
+    "analytics": "f1aadb52-d69c-44be-b913-86ada2e816a3"
+  }
 }

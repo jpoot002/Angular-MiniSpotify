@@ -16,6 +16,7 @@ import { PipeImagePipe } from './shared/pipe-image.pipe';
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
 import { LoadingComponent } from './components/shared/loading/loading.component';
 import { DomseguroPipe } from './shared/domseguro.pipe';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DomseguroPipe } from './shared/domseguro.pipe';
     TarjetasComponent,
     LoadingComponent,
     DomseguroPipe,
+    FooterComponent,
 
 
   ],

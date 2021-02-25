@@ -6,13 +6,12 @@ import { Router} from '@angular/router';
   templateUrl: './tarjetas.component.html',
   styleUrls: ['./tarjetas.component.css']
 })
-export class TarjetasComponent implements OnInit {
+export class TarjetasComponent   {
 
   @Input() Newreleases:any[] = [];
 
   constructor( private router:Router) { }
 
-  ngOnInit(): void { }
 
   Busqueda(DatosBusqueda:any){
     let artistaId;
@@ -26,3 +25,9 @@ export class TarjetasComponent implements OnInit {
   }
 
 }
+
+
+
+
+
+
