@@ -32,6 +32,7 @@ export class ArtistaComponent implements OnInit {
       .subscribe( artista => {
         this.Artista = artista;
         this.loading= false;
+        console.log(this.Artista);
     })
   }
 

@@ -6,6 +6,7 @@
   <div class="col">
       <h3>{{Artista.name}}</h3>
     <span *ngFor="let genre of Artista.genres" class="badge badge-secondary">{{genre}}</span>
+    <h5>popularity:{{Artista.popularity}}</h5>
   </div>
 </div>
 
@@ -15,7 +16,6 @@
       <th scope="col">Foto</th>
       <th scope="col">Albun</th>
       <th scope="col">Cancion</th>
-      <th scope="col">Vista Previa</th>
     </tr>
   </thead>
   <tbody>
@@ -25,9 +25,12 @@
       </td>
       <td>{{tracksArtista.album.name}}</td>
       <td>{{tracksArtista.name}}</td>
+      <!--
       <td>
         <iframe [src]="tracksArtista.album.id |domseguro" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
       </td>
+       -->
+
 
     </tr>
   </tbody>
