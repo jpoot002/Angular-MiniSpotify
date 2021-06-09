@@ -1,6 +1,6 @@
 .vertical-nav {
-  min-width: 10%;
-  width: 10%;
+  min-width: 160px;
+  width: 160px;
   height: 100%;
   position: fixed;
   top: 0;

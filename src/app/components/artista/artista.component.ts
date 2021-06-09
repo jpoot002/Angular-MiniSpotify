@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'
-import { SpotyfyService} from '../../services/spotyfy.service'
+import { ActivatedRoute } from '@angular/router';
+import { SpotyfyService } from '../../services/spotyfy.service';
+import { Tracks } from '../../interfaces/Tracks';
+import { Artistas } from '../../interfaces/Artistas';
 
 @Component({
   selector: 'app-artista',
@@ -9,12 +11,16 @@ import { SpotyfyService} from '../../services/spotyfy.service'
 })
 export class ArtistaComponent implements OnInit {
 
-  TracksArtista:any = {};
-  Artista:any = {};
-  loading: boolean
+  public GetLoading:boolean = false;
+  public GetAlertainformacion:string="info";
+  public GetArtista: Artistas;
+  public GetTracksArtista:Tracks;
+  
+  constructor(
+    private router:ActivatedRoute,
+    private spotyfyService:SpotyfyService,
+    ) { }
 
-  constructor(private router:ActivatedRoute,
-              private spotyfyService:SpotyfyService) { }
 
 
   ngOnInit(): void {
@@ -26,21 +32,30 @@ export class ArtistaComponent implements OnInit {
     );
   }
 
-  getArtista (DatosBusquedaId){
-    this.loading= true;
+  ngOnDestroy(): void {
+    localStorage.removeItem("files");
+    localStorage.removeItem("Validador");
+  }
+  
+  private getArtista (DatosBusquedaId){
+    this.GetLoading= true;
     this.spotyfyService.GetArtistBuscadoId(DatosBusquedaId)
-      .subscribe( artista => {
-        this.Artista = artista;
-        this.loading= false;
-        console.log(this.Artista);
+      .subscribe( Artistas => {
+        this.GetArtista = Artistas;
+        this.GetLoading= false;
+    
     })
   }
 
-  GetTopTracks(DatosBusquedaId){
+  private GetTopTracks(DatosBusquedaId){
     this.spotyfyService.GetArtistsTopTracks(DatosBusquedaId)
-        .subscribe(tracksArtista =>{
-          this.TracksArtista=tracksArtista;
-        })
+    .subscribe(tracksArtista =>{
+      this.GetTracksArtista=tracksArtista;
+      localStorage.setItem("Validador",'true');
+      localStorage.removeItem("files");
+      localStorage.setItem("files",JSON.stringify(this.GetTracksArtista));
+     
+    })
   }
 
 

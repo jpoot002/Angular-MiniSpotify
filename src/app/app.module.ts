@@ -8,15 +8,16 @@ import { SearchComponent } from './components/search/search.component';
 import { ArtistaComponent } from './components/artista/artista.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { TarjetasComponent } from './components/tarjetas/tarjetas.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
 //Rutas
 import { AppRoutingModule } from './app.routing.module';
 //pipes
 import { PipeImagePipe } from './shared/pipe-image.pipe';
+import { MinutesPipe } from './shared/minutes.pipe';
+import { DomseguroPipe } from './shared/domseguro.pipe';
 
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
-import { LoadingComponent } from './components/shared/loading/loading.component';
-import { DomseguroPipe } from './shared/domseguro.pipe';
-import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     LoadingComponent,
     DomseguroPipe,
     FooterComponent,
+    MinutesPipe,
 
 
   ],

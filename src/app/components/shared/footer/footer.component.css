@@ -1,44 +1,173 @@
 .st-navbar-desktop-wrapper {
   font-family: inherit;
   position: absolute;
-  width: 100%;
-  z-index: 1030;
-  margin-left: 10%;
+  width: 92%;
+  z-index: 1;
+  margin-left: 160px;
+  border-width: 1px;
+  border-style: solid;
+  border-top-color: rgba(243, 17, 224, 0.5) ;
+  border-right-color: #282828;
+  border-bottom-color: #282828;
+  border-left-color: #282828;
 }
 .st-navbar-desktop-fixed {
   position: fixed;
   bottom: 0%;
 }
-.containe{
-  padding: .5%;
-  padding-left: 20%;
-  padding-right: 20%;
-}
-.st-navbar-desktop {
-  height: 100px;
 
+.current-track { 
+  background: #282828;
+  padding: 10px 10px;
+  padding-left: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  height: 58px;
 }
-.st-navbar-desktop:before {
-  content: "";
-  display: block;
-  position: absolute;
+
+.current-track__actions {
+  width: 5%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.current-track__progress {
+  width: 70%;
+  padding: 0 30px;
+  color: #aaaaaa;
+  font-size: 12px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.current-track__progress__bar {
+  width: 75%;
+  padding: 0 15px;
+}
+
+.current-track__progress__bar .input {
   width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: rgba(33, 33, 33, 0.8);
+  height: 3px;
+  display: block;
+  -webkit-appearance: none;
+  background-image: linear-gradient(to right, rgba(243, 17, 224, 0.5), rgba(25, 209, 231, 0.5)); 
+  background-size:100%;
+}
+.current-track__options .content-menu .dropdown-menu{
+  background:  linear-gradient(  rgba(17, 119, 131, 0.9), rgba(139, 10, 129, 0.9)); 
+  border: 1px solid rgb(0, 0, 0);
+  width: 500px;
+  padding: 10px;
+  bottom: 35px;
+}
+.current-track__options .content-menu .btn-light{
+  margin-bottom: 0px;
+  border-top-width: 0px;
+  margin: 3px;
+  padding: 0px 4px 0px 4px;
+  color: #ffffff;
+  background-color: #f8f9fa00;
+  border-color: #ffffff;
+  border-bottom-width: 0px;
+  border-right-width: 2px;
+  border-left-width: 2px;
+}
+
+.current-track__options .content-menu .btn-light:hover{
+
+  color: #777777;
+  border-color: #070707;
+
+}
+.current-track__options {
+  width: 25%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.current-track__options .controls {
+  width: 80%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding-left: 5%;
+}
+
+.current-track__options .controls .volumen{
+  width: 90%;
+  height: 3px;
+  display: block;
+  -webkit-appearance: none;
+  background-image: linear-gradient(to right, rgba(243, 17, 224, 0.5), rgba(25, 209, 231, 0.5)); 
+  background-size:100%;
+  margin-top: 9px; 
+}
+
+@media (max-width: 1400px) {
+  .current-track__actions {
+    width: 10%;
+  }
+  .current-track__progress {
+    width: 50%;
+  }
+  .current-track__options {
+    width: 33%;
+  }
+}
+@media (max-width: 980px) {
+  .current-track__actions {
+    width: 10%;
+  }
+  .current-track__progress {
+    width: 40%;
+  }
+  .current-track__options {
+    width: 40%;
+  }
+}
+@media (max-width: 768px) {
+  .current-track__actions {
+    width: 25%;
+  }
+  .current-track__progress {
+    width: 75%;
+  }
+  .current-track__options {
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .current-track__actions {
+    width: 100%;
+    justify-content: space-around;
+    padding: 5px 0;
+  }
+  .current-track__progress {
+    width: 100%;
+    padding: 5px 0;
+  }
+  .current-track__options {
+    width: 100%;
+    padding: 5px 0;
+  }
 }
 
 
 
-.carousel {
-	padding: 0 0px;
-}
-.carousel .carousel-item {
-	color: #ffffff;
 
-}
-.carousel .carousel-item .img-box {
-	width: 80px;
-	height: 80px;
-}
+
+
+
+
+
+
+
+
+
+
 

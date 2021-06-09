@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SpotyfyService } from '../../services/spotyfy.service';
 
 @Component({
@@ -6,25 +6,22 @@ import { SpotyfyService } from '../../services/spotyfy.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent  {
 
   constructor(private spotify:SpotyfyService) { }
 
-  Artistas: any[]=[];
-  loading: boolean;
+  public GetArtistas: any[]=[];
+  public GetLoading: boolean;
 
-  Buscador(BuscarArtista:string){
-    this.loading= true;
+  public GetBuscador(BuscarArtista:string){
+    this.GetLoading= true;
     this.spotify.GetArtista(BuscarArtista)
     .subscribe((Artistas:any) => {
-      this.Artistas= Artistas;
-      this.loading= false;
+      this.GetArtistas= Artistas;
+      this.GetLoading= false;
     }),(errorser)=> {
       console.log(errorser.error.error);
     }
   };
-
-  ngOnInit(): void {
-  }
 
 }

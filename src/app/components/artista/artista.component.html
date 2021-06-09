@@ -1,37 +1,80 @@
-<app-loading *ngIf="loading"></app-loading>
-<div class="row animated fadeIn" *ngIf="!loading">
-  <div class="col-2">
-    <img [src]="Artista.images | pipeImage" class="img-circle">
+<app-loading *ngIf="GetLoading"></app-loading>
+
+<div class="artist__header container-xl" 
+style="
+background-image: linear-gradient(
+  rgba(25, 209, 231, 0.5),
+  rgba(243, 17, 224, 0.5)
+),
+url({{GetArtista.images | pipeImage}}); ">
+
+
+  <div class="artist__info">
+    <div class="profile__img">
+      <img [src]="GetArtista.images | pipeImage" alt={{GetArtista.name}} />
+    </div>
+    <div class="artist__info__meta">
+      <div class="artist__info__name"> {{GetArtista.name}} </div>
+      <div class="artist__info__actions">
+        <button class="button-light"><a href="{{GetArtista.external_urls.spotify}}" style="color: #ffffff;">spotify </a></button>
+      </div>
+    </div>
   </div>
-  <div class="col">
-      <h3>{{Artista.name}}</h3>
-    <span *ngFor="let genre of Artista.genres" class="badge badge-secondary">{{genre}}</span>
-    <h5>popularity:{{Artista.popularity}}</h5>
+
+  <div class="artist__listeners">
+    <div> <span *ngFor="let genre of GetArtista.genres"> {{genre}}</span></div>
+    <div> popularity : {{GetArtista.popularity}}</div>
   </div>
+
+  <div class="artist__navigation">
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a href="#artist-overview" aria-controls="artist-overview" role="tab" data-toggle="tab">lista</a>
+      </li>
+      <li role="presentation">
+        <a href="#related-artists" aria-controls="related-artists" role="tab" data-toggle="tab">álbum</a>
+      </li>
+    </ul>
+  </div>
+
 </div>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Foto</th>
-      <th scope="col">Albun</th>
-      <th scope="col">Cancion</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let tracksArtista of TracksArtista" >
-      <td>
-        <img [src]="tracksArtista.album.images| pipeImage" class="img-thumb">
-      </td>
-      <td>{{tracksArtista.album.name}}</td>
-      <td>{{tracksArtista.name}}</td>
-      <!--
-      <td>
-        <iframe [src]="tracksArtista.album.id |domseguro" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-      </td>
-       -->
+<div class="container-xl">
+  <div class="tab-content">
+  
+    <div role="tabpanel" class="tab-pane active" id="artist-overview">
+      <div class="overview__albums">
+        <div class="overview__albums__head row">
+          <span class="col-1">#</span>
+          <span class="col-5">Albums</span>
+          <span class="col-5">GetArtista</span>
+          <span class="col-1">Time</span>
+        </div>
+    
+        <div class="album" >
+          <div class="tracks ">
+            <div class="track row" *ngFor="let tracksartista of GetTracksArtista ;let indice=index" >
+              <div class="track__number col-1" >
+                {{indice+1}} 
+              </div>
+              <div class="col-5">{{tracksartista.album.name}}</div>
+              <div class="col-5 feature">{{tracksartista.name}}</div>
+              <div  class="col-1">{{tracksartista.duration_ms  | minutes}} </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  
+    <div role="tabpanel " class="tab-pane" id="related-artists">
+      <div class="media-cards" >
+        <div class="media-card border-radius" *ngFor="let tracksartista of GetTracksArtista">
+          <img  class="media-card__image border-radius-higher" [src]="tracksartista.album.images| pipeImage">
+          <a class="media-card__footer border-radius-lower">{{tracksartista.album.name}}</a>
+        </div>
+      </div>
+    </div>
 
-    </tr>
-  </tbody>
-</table>
+  </div>
+</div>

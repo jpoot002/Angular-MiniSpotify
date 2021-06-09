@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotyfyService } from '../../services/spotyfy.service'
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,7 +19,6 @@ export class HomeComponent implements OnInit {
     .subscribe((NeWreleases:any) => {
       this.Newreleases =NeWreleases;
       this.loading= false;
-      console.log(this.Newreleases);
     }),(errorser)=> {
       console.log(errorser.error.error);
     }

@@ -1,30 +1,11 @@
 .card {
   box-shadow: 2px 2px 5px rgb(0, 0, 0);
-  border-radius: 10%;
   background: #000000;
 }
 
 .card-body {
   background: #000000;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .lef{
   position:absolute;
@@ -50,3 +31,23 @@
   color: #e6e6e6;
 }
 
+.border-radius{
+  border-style: solid;
+  border-radius: 30px;
+  border-color: rgba(243, 17, 224, 0.5) rgba(25, 209, 231, 0.5);
+}
+
+.border-radius-higher{
+  border-radius: 30px 30px 0px 0px ;
+}
+
+.border-radius-lower{
+  border-radius: 0px 0px 30px 30px;
+}
+
+.badge{
+  margin-left: 10px;
+}
+.div-space{
+  margin-bottom: 70px;
+}
