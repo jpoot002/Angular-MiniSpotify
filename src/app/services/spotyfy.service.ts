@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 
 export class SpotyfyService {
   private ApiKey:ApiKey;
-  private timeLeft: number = 58;
+  private timeLeft: number = 3598;
   private interval;
   constructor(
     private http: HttpClient,) {
@@ -70,6 +70,7 @@ export class SpotyfyService {
 
   SetTtoken(){
     this.ApiKey= JSON.parse(localStorage.getItem("result"));
+    console.log(this.ApiKey);
     this.startTimer();
   }
 
@@ -77,19 +78,24 @@ export class SpotyfyService {
     localStorage.removeItem("result");
   }
 
-  startTimer() {
+  /*startTimer() {
     this.interval = setInterval(() => {
       if(this.timeLeft > 0) {
+        console.log(this.timeLeft)
         this.timeLeft--;
       } else {
         this.GetToken();
         this.SetTtoken();
-        this.timeLeft = 58;
+        this.timeLeft = 3598;
       }
-    },1000)
+    },100000)
+  }*/
 
+    startTimer() {
+    this.interval = setInterval(() => {
+        this.GetToken();
+        this.SetTtoken();
+
+    },3000*1000)//para segundos
   }
-
- 
-
 }

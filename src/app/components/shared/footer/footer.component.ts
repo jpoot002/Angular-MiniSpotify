@@ -1,8 +1,10 @@
-import { Component} from '@angular/core';
+import { Component, HostListener, ElementRef} from '@angular/core';
 import { Observable} from 'rxjs'
 import {PlayList} from '../../../interfaces/PlayList';
 import { ActivatedRoute } from '@angular/router';
 import { SpotyfyService} from '../../../services/spotyfy.service';
+import { ID } from '../../../interfaces/Tracks';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   
@@ -15,13 +17,12 @@ export class FooterComponent{
 
   constructor(
     private router:ActivatedRoute,
-    private spotyfyService:SpotyfyService,
-    ) { }
+    private spotyfyService:SpotyfyService,) { }
 
-  public  PlayList: Array<PlayList> = []
+  private targetid: string;
+  public  PlayList: Array<PlayList> = [];
   public  CurrentTime:number = 0;
   public  Duration:number = 0;
-  public  Seek:number = 0;
   public  album:string = "cancion";
   public  PlayPause:number = -1
   public  iconvolume:number = 1
@@ -41,20 +42,33 @@ export class FooterComponent{
     "loadstart"
   ];
 
+  @HostListener('document:click',['$event']) clickout(event) 
+  { 
+    this.targetid= event.target.id;
+    if (this.targetid == "RepArtista") {
+      console.log(this.targetid);
+      this.playartista();
+    }
+  }
+
   public ClickPlay(Num,url){
     this.Numero=Num;
     this.OpenFile(url);
   };
 
-  public PlayStop(){   
+  public playartista(){
     this.SetPlatList();
+     if (this.ValidadorJson) {
+       this.OpenFile(this.PlayList[0].preview_url);
+       this.Numero = 0;
+       this.PlayPause = 1;
+       this.album =this.PlayList[0].album ; 
+       this.removeDatos();
+     }
+
+  }
+  public PlayStop(){  
      if(this.PlayPause < 0){
-      if (this.ValidadorJson) {
-        this.OpenFile(this.PlayList[0].preview_url);
-        this.Numero = 0;
-        this.album =this.PlayList[0].album ; 
-        this.removeDatos();
-      }
       this.audioObj.play();
       this.PlayPause = 1;
     }
@@ -93,6 +107,7 @@ export class FooterComponent{
     this.iconvolume = event.target.value;
   }
 
+  //para la vara de audio
   public SetSeekTo(event) {
     this.audioObj.currentTime = event.target.value;
   }
@@ -112,7 +127,6 @@ export class FooterComponent{
       
       const handler = (event: Event) => {
         this.Duration = 0 ;
-        this.Seek = this.audioObj.currentTime;
         this.CurrentTime = this.audioObj.currentTime;
         this.Duration =  this.audioObj.duration;
        

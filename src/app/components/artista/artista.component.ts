@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpotyfyService } from '../../services/spotyfy.service';
 import { Tracks } from '../../interfaces/Tracks';
@@ -20,8 +20,6 @@ export class ArtistaComponent implements OnInit {
     private router:ActivatedRoute,
     private spotyfyService:SpotyfyService,
     ) { }
-
-
 
   ngOnInit(): void {
     this.router.params.subscribe(
