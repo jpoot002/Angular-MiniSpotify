@@ -3,4 +3,4 @@
     <input #BuscarArtista type="text" (keyup)="GetBuscador(BuscarArtista.value)" class="form-control" placeholder="Buscar Artista">
   </div>
 </div>
-<app-tarjetas *ngIf="!GetLoading" [Newreleases]="GetArtistas"> </app-tarjetas>
+<app-tarjetas *ngIf="!GetLoading" [Newreleases]="GetArtistas" [Numero]=1> </app-tarjetas>

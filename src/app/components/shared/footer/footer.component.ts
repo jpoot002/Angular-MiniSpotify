@@ -59,6 +59,7 @@ export class FooterComponent{
   public playartista(){
     this.SetPlatList();
      if (this.ValidadorJson) {
+      console.log(this.PlayList[0].preview_url);
        this.OpenFile(this.PlayList[0].preview_url);
        this.Numero = 0;
        this.PlayPause = 1;
@@ -172,6 +173,8 @@ export class FooterComponent{
 
     if (this.ValidadorJson) {
       this.PlayList.splice(0, this.PlayList.length);
+
+      console.log(filesJson);
       for (let i = 0; i < filesJson.length; i++) {
        if (filesJson[i].preview_url != null) {
         this.PlayList.push({

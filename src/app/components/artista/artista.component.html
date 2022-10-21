@@ -1,32 +1,35 @@
 <app-loading *ngIf="GetLoading"></app-loading>
 
-<div class="artist__header container-xl" 
+<div class="artist__header container-xl " 
 style="
 background-image: linear-gradient(
   rgba(25, 209, 231, 0.5),
   rgba(243, 17, 224, 0.5)
 ),
-url({{GetArtista.images | pipeImage}}); ">
-
+url({{GetAlbumsID.images[0].url | pipeImage}}); ">
 
   <div class="artist__info">
     <div class="profile__img">
-      <img [src]="GetArtista.images | pipeImage" alt={{GetArtista.name}} />
+      <img [src]="GetAlbumsID.images[0].url | pipeImage" alt={{GetAlbumsID.name}} />
     </div>
     <div class="artist__info__meta">
-      <div class="artist__info__name"> {{GetArtista.name}} </div>
-      <div class="artist__info__actions">
-        <button class="button-light"><a href="{{GetArtista.external_urls.spotify}}" style="color: #ffffff;">spotify </a></button>
-      </div>
-      <div> 
-        <button class="button-light" ><a id="RepArtista"click="516565165" style="color: #ffffff;">Reproducir </a></button>
+      <div class="artist__info__name"> {{GetAlbumsID.name}} </div>
+      <div class="artist__info__actions">   
+        <div class="row">
+          <div class="col-5">
+            <button class="button-light"><a href="{{GetAlbumsID.external_urls.spotify}}" style="color: #ffffff;">spotify </a></button>
+          </div>
+          <div class="col-7">
+            <button class="button-light" ><a id="RepArtista"click="516565165" style="color: #ffffff;">Reproducir </a></button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="artist__listeners">
-    <div> <span *ngFor="let genre of GetArtista.genres"> {{genre}}</span></div>
-    <div> popularity : {{GetArtista.popularity}}</div>
+    <div> <span *ngFor="let genre of GetAlbumsID.genres"> {{genre}}</span></div>
+    <div> popularity : {{GetAlbumsID.popularity}}</div>
   </div>
 
   <div class="artist__navigation">
@@ -42,27 +45,28 @@ url({{GetArtista.images | pipeImage}}); ">
 
 </div>
 
+
+
+
 <div class="container-xl">
   <div class="tab-content">
   
     <div role="tabpanel" class="tab-pane active" id="artist-overview">
       <div class="overview__albums">
         <div class="overview__albums__head row">
-          <span class="col-1">#</span>
-          <span class="col-5">Albums</span>
-          <span class="col-5">GetArtista</span>
-          <span class="col-1">Time</span>
+          <span class="col">#</span>
+          <span class="col-5">Cancion</span>
+          <span class="col">Tiempo</span>
         </div>
     
         <div class="album" >
           <div class="tracks ">
-            <div class="track row" *ngFor="let tracksartista of GetTracksArtista ;let indice=index" >
-              <div class="track__number col-1" >
+            <div class="track row" *ngFor="let tracks of GetAlbumsIdTras ;let indice=index" >
+              <div class="track__number col" >
                 {{indice+1}} 
               </div>
-              <div class="col-5">{{tracksartista.album.name}}</div>
-              <div class="col-5 feature">{{tracksartista.name}}</div>
-              <div  class="col-1">{{tracksartista.duration_ms  | minutes}} </div>
+              <div class="col-5 feature">{{tracks.name}}</div>
+              <div  class="col">{{tracks.duration_ms  | minutes}} </div>
             </div>
           </div>
         </div>
@@ -72,9 +76,9 @@ url({{GetArtista.images | pipeImage}}); ">
   
     <div role="tabpanel " class="tab-pane" id="related-artists">
       <div class="media-cards" >
-        <div class="media-card border-radius" *ngFor="let tracksartista of GetTracksArtista">
-          <img  class="media-card__image border-radius-higher" [src]="tracksartista.album.images| pipeImage">
-          <a class="media-card__footer border-radius-lower">{{tracksartista.album.name}}</a>
+        <div class="media-card border-radius" *ngFor="let tracksAlbums of GetAlbumsIdTras "  >
+          <!--<img  class="media-card__image border-radius-higher" [src]="tracksAlbums.album.images| pipeImage"-->
+          <a class="media-card__footer border-radius-lower">{{tracksAlbums.name}}</a>
         </div>
       </div>
     </div>

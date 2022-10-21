@@ -18,6 +18,7 @@ import { MinutesPipe } from './shared/minutes.pipe';
 import { DomseguroPipe } from './shared/domseguro.pipe';
 
 import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
+import { CategoriaComponent } from './components/categoria/categoria.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ITS_JUST_ANGULAR } from '@angular/core/src/r3_symbols';
     DomseguroPipe,
     FooterComponent,
     MinutesPipe,
+    CategoriaComponent,
 
 
   ],

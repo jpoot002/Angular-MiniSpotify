@@ -5,15 +5,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PipeImagePipe implements PipeTransform {
 
-  transform(images: any[]):string {
-    if(!images){
-      return 'assets/img/pngwing.com.png';
-    }
+  transform(images: string):string {
+
 
     if(images.length > 0){
-      return images[0].url;
+      return images;
     }else{
       return 'assets/img/pngwing.com.png';
     }
+
+    
   }
 }

@@ -9,20 +9,23 @@ import { Router} from '@angular/router';
 export class TarjetasComponent   {
 
   @Input()  Newreleases:any[] = [];
+  @Input()  Numero:number;
 
   constructor( private router:Router) { }
 
 
-  public GetBuscador(DatosBusqueda:any){
-    let artistaId;
-
-    if (DatosBusqueda.type === 'artist') {
-      artistaId = DatosBusqueda.id;
-    } else {
-      artistaId = DatosBusqueda.artists[0].id;
-    }
-    this.router.navigate(['artist',artistaId]);
+  public GetBuscadorAlbun(DatosBusqueda:any){
+    this.router.navigate(['Spotify','albun',DatosBusqueda]);
   }
+
+  public GetBuscadorArtista(DatosBusqueda:any){
+    this.router.navigate(['Spotify','artista',DatosBusqueda]);
+  }
+
+  public GetBuscadorCategoria(DatosBusqueda:any){
+    this.router.navigate(['Spotify/categories/categoria',DatosBusqueda]);
+  }
+
 
 }
 

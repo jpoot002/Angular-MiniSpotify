@@ -25,27 +25,30 @@ export class SpotyfyService {
     return this.http.get(url,{headers})
   }
 
+  //Busqueda por albun
   GetNeWreleases(){
-   
-    return this.GetNewget('browse/new-releases?limit=50')
-      .pipe( map(NeWreleases=>NeWreleases['albums'].items));
+    return this.GetNewget('browse/new-releases?country=SE&limit=50&offset=10')
+      .pipe( map(NeWreleases=>NeWreleases['albums'].items) );
   }
 
+  // busqueda por artista
   GetArtista(Buscardor:string){
     return this.GetNewget('search?q='+Buscardor+'&type=artist&limit=50')
     .pipe( map(NeWreleases=>NeWreleases['artists'].items));
    
   }
-
+  //Buscar artista por id
   GetArtistBuscadoId(BuscardorID:string){
     return this.GetNewget('artists/'+BuscardorID);
   }
 
+  //Buscar el albun de artista 
   GetArtistsTopTracks(BuscardorIdTopTracks:string){
     return this.GetNewget('artists/'+BuscardorIdTopTracks+'/top-tracks?country=ES')
     .pipe( map(ArtistsTopTracks=>ArtistsTopTracks['tracks']));
   }
 
+  // generador del token
   GetToken(){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -68,9 +71,9 @@ export class SpotyfyService {
     this.ApiKey= JSON.parse(localStorage.getItem("result"));
   }
 
+
   SetTtoken(){
     this.ApiKey= JSON.parse(localStorage.getItem("result"));
-    console.log(this.ApiKey);
     this.startTimer();
   }
 
@@ -91,11 +94,41 @@ export class SpotyfyService {
     },100000)
   }*/
 
-    startTimer() {
+  startTimer() {
     this.interval = setInterval(() => {
         this.GetToken();
         this.SetTtoken();
 
     },3000*1000)//para segundos
+  }
+
+  GetAlbums(BuscardorID){
+    return this.GetNewget('albums/'+BuscardorID);
+  }
+
+  GetAlbumsTras(BuscardorID){
+    return this.GetNewget('albums/'+BuscardorID+'/tracks')
+    .pipe( map(ItemsAlbumsTras=>ItemsAlbumsTras['items']));
+  }
+
+  GetTrackId(tracksId){
+    return this.GetNewget('tracks/'+tracksId+'?market=ES')
+    .pipe( map(ItemstracksId=>ItemstracksId));
+  }
+
+  //Categoria
+
+  GetCategories(){
+    return this.GetNewget('browse/categories?country=SE&locale=sv_SE&limit=30&offset=5')
+    .pipe( map(ItemsCategories=>ItemsCategories['categories']));
+  }
+
+
+  GetNewgeturl(query:string):Observable<any>{
+    const url =query;
+    const headers = new HttpHeaders({
+      'Authorization':'Bearer '+this.ApiKey.access_token
+    });
+    return this.http.get(url,{headers})
   }
 }

@@ -1,22 +1,25 @@
 <div class="row animated fadeIn div-space ">
-  <div class="col-md-2 img" (click)="GetBuscador(Newrelease)" *ngFor="let Newrelease of Newreleases">
+  <div class="col-md-2 img" *ngFor="let Newrelease of Newreleases">
     <div class="card mb-4 shadow-sm border-radius">
 
+      <img *ngIf="Numero == 1" class="card-img-top border-radius-higher" [src]="Newrelease.images[0].url | pipeImage" alt="Card image cap" >
+      <img *ngIf="Numero == 2" class="card-img-top border-radius-higher" [src]="Newrelease.icons[0].url| pipeImage" alt="Card image cap" >
 
-      <img class="card-img-top border-radius-higher" [src]="Newrelease.images | pipeImage" alt="Card image cap">
-      <img class="top card-img-top" src="../../../assets/img/play.png" />
-
+      <img *ngIf="Numero == 1" (click)="GetBuscadorAlbun(Newrelease.id)" class="top card-img-top" src="../../../assets/img/play.png" />
+      <img *ngIf="Numero == 2" (click)="GetBuscadorCategoria(Newrelease.id)" class="top card-img-top" src="../../../assets/img/play.png" />
+      
       <div class="card-body border-radius-lower">
         <h5 class="card-title">{{Newrelease.name}}</h5>
         <div class="row d-flex justify-content-between align-items-center">
           <div class="col-12">
-            <span *ngFor="let artists of Newrelease.artists" class="badge badge-secondary">{{artists.name}}</span>
+            <span type ="button" (click)="GetBuscadorArtista(artists.id)"  *ngFor="let artists of Newrelease.artists" class="badge badge-secondary">{{artists.name}}</span>
           </div>
+        </div>
       </div>
-
     </div>
   </div>
 </div>
+
 
 
 

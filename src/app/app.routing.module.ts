@@ -3,15 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { ArtistaComponent } from './components/artista/artista.component';
+import { CategoriaComponent} from './components/categoria/categoria.component'
 
 
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'search', component: SearchComponent },
-  { path: 'artist/:id', component: ArtistaComponent },
-  { path: '', pathMatch: 'full', redirectTo:'home' },
-  { path: '**', pathMatch: 'full', redirectTo:'home' }
+  { path: 'Spotify/:Titulo', component: HomeComponent },
+  { path: 'Search', component: SearchComponent },
+  { path: 'Spotify/:tipo/:id', component: ArtistaComponent },
+  { path: 'Spotify/categories/categoria/:idcategoria', component: CategoriaComponent },
+  { path: '', pathMatch: 'full', redirectTo:'Spotify/Lanzamientos' },
+  { path: '**', pathMatch: 'full', redirectTo:'Spotify/Lanzamientos' }
 ]
 
 @NgModule({
