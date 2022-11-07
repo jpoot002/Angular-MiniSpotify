@@ -2,11 +2,12 @@
   <div class="col-md-2 img" *ngFor="let Newrelease of Newreleases">
     <div class="card mb-4 shadow-sm border-radius">
 
-      <img *ngIf="Numero == 1" class="card-img-top border-radius-higher" [src]="Newrelease.images[0].url | pipeImage" alt="Card image cap" >
+      <img *ngIf="Numero == 1 || Numero == 3" class="card-img-top border-radius-higher" [src]="Newrelease.images[0].url | pipeImage" alt="Card image cap" >
       <img *ngIf="Numero == 2" class="card-img-top border-radius-higher" [src]="Newrelease.icons[0].url| pipeImage" alt="Card image cap" >
 
       <img *ngIf="Numero == 1" (click)="GetBuscadorAlbun(Newrelease.id)" class="top card-img-top" src="../../../assets/img/play.png" />
       <img *ngIf="Numero == 2" (click)="GetBuscadorCategoria(Newrelease.id)" class="top card-img-top" src="../../../assets/img/play.png" />
+      <img *ngIf="Numero == 3" (click)="GetBuscadorAlbums(Newrelease.id)" class="top card-img-top" src="../../../assets/img/play.png" />
       
       <div class="card-body border-radius-lower">
         <h5 class="card-title">{{Newrelease.name}}</h5>

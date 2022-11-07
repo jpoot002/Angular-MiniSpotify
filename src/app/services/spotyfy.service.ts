@@ -14,41 +14,9 @@ export class SpotyfyService {
   private timeLeft: number = 3598;
   private interval;
   constructor(
-    private http: HttpClient,) {
-  }
+    private http: HttpClient,) {}
 
-  GetNewget(query:string):Observable<any>{
-    const url ='https://api.spotify.com/v1/'+query;
-    const headers = new HttpHeaders({
-      'Authorization':'Bearer '+this.ApiKey.access_token
-    });
-    return this.http.get(url,{headers})
-  }
-
-  //Busqueda por albun
-  GetNeWreleases(){
-    return this.GetNewget('browse/new-releases?country=SE&limit=50&offset=10')
-      .pipe( map(NeWreleases=>NeWreleases['albums'].items) );
-  }
-
-  // busqueda por artista
-  GetArtista(Buscardor:string){
-    return this.GetNewget('search?q='+Buscardor+'&type=artist&limit=50')
-    .pipe( map(NeWreleases=>NeWreleases['artists'].items));
-   
-  }
-  //Buscar artista por id
-  GetArtistBuscadoId(BuscardorID:string){
-    return this.GetNewget('artists/'+BuscardorID);
-  }
-
-  //Buscar el albun de artista 
-  GetArtistsTopTracks(BuscardorIdTopTracks:string){
-    return this.GetNewget('artists/'+BuscardorIdTopTracks+'/top-tracks?country=ES')
-    .pipe( map(ArtistsTopTracks=>ArtistsTopTracks['tracks']));
-  }
-
-  // generador del token
+  // Para el token
   GetToken(){
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -71,6 +39,12 @@ export class SpotyfyService {
     this.ApiKey= JSON.parse(localStorage.getItem("result"));
   }
 
+  startTimer() {
+    this.interval = setInterval(() => {
+        this.GetToken();
+        this.SetTtoken();
+    },3000*1000)//para segundos
+  }
 
   SetTtoken(){
     this.ApiKey= JSON.parse(localStorage.getItem("result"));
@@ -80,26 +54,36 @@ export class SpotyfyService {
   RemoveToken(){
     localStorage.removeItem("result");
   }
+  
+  GetNewget(query:string):Observable<any>{
+    const url ='https://api.spotify.com/v1/'+query;
+    const headers = new HttpHeaders({
+      'Authorization':'Bearer '+this.ApiKey.access_token
+    });
+    return this.http.get(url,{headers})
+  }
 
-  /*startTimer() {
-    this.interval = setInterval(() => {
-      if(this.timeLeft > 0) {
-        console.log(this.timeLeft)
-        this.timeLeft--;
-      } else {
-        this.GetToken();
-        this.SetTtoken();
-        this.timeLeft = 3598;
-      }
-    },100000)
-  }*/
+  // Artista
+  GetArtista(Buscardor:string){
+    return this.GetNewget('search?q='+Buscardor+'&type=artist&limit=50')
+    .pipe( map(NeWreleases=>NeWreleases['artists'].items));
+   
+  }
 
-  startTimer() {
-    this.interval = setInterval(() => {
-        this.GetToken();
-        this.SetTtoken();
+  GetArtistBuscadoId(BuscardorID:string){
+    return this.GetNewget('artists/'+BuscardorID);
+  }
 
-    },3000*1000)//para segundos
+
+  GetArtistsTopTracks(BuscardorIdTopTracks:string){
+    return this.GetNewget('artists/'+BuscardorIdTopTracks+'/top-tracks?country=ES')
+    .pipe( map(ArtistsTopTracks=>ArtistsTopTracks['tracks']));
+  }
+
+  // Albums
+  GetNeWreleases(){
+    return this.GetNewget('browse/new-releases?country=SE&limit=50&offset=10')
+      .pipe( map(NeWreleases=>NeWreleases['albums'].items) );
   }
 
   GetAlbums(BuscardorID){
@@ -111,19 +95,31 @@ export class SpotyfyService {
     .pipe( map(ItemsAlbumsTras=>ItemsAlbumsTras['items']));
   }
 
-  GetTrackId(tracksId){
-    return this.GetNewget('tracks/'+tracksId+'?market=ES')
-    .pipe( map(ItemstracksId=>ItemstracksId));
-  }
-
-  //Categoria
-
+  // Categoria
   GetCategories(){
     return this.GetNewget('browse/categories?country=SE&locale=sv_SE&limit=30&offset=5')
     .pipe( map(ItemsCategories=>ItemsCategories['categories']));
   }
 
+  // Funciones Generales
+  GetTrackId(tracksId){
+    return this.GetNewget('tracks/'+tracksId+'?market=ES')
+    .pipe( map(ItemstracksId=>ItemstracksId));
+  }
 
+  GetCategoriesplaylists(paramsrouter){
+    return this.GetNewget('browse/categories/'+paramsrouter+'/playlists?country=SE&limit=20&offset=10')
+    .pipe( map(ItemsCategoriesplay=>ItemsCategoriesplay['playlists']));
+  }
+
+  GetCategoriesplayliststracks(paramsrouter){
+    return this.GetNewget('playlists/'+paramsrouter+'/tracks')
+    .pipe( map( ItemsCategoriesplay=>ItemsCategoriesplay.items) )
+  }
+  
+
+
+  // Para consultas por url
   GetNewgeturl(query:string):Observable<any>{
     const url =query;
     const headers = new HttpHeaders({

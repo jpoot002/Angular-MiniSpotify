@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'Spotify/:Titulo', component: HomeComponent },
   { path: 'Search', component: SearchComponent },
   { path: 'Spotify/:tipo/:id', component: ArtistaComponent },
-  { path: 'Spotify/categories/categoria/:idcategoria', component: CategoriaComponent },
+  { path: 'Spotify/Categorias/Categoria/:idcategoria', component: CategoriaComponent },
   { path: '', pathMatch: 'full', redirectTo:'Spotify/Lanzamientos' },
   { path: '**', pathMatch: 'full', redirectTo:'Spotify/Lanzamientos' }
 ]

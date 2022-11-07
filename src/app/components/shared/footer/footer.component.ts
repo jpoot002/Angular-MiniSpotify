@@ -46,7 +46,6 @@ export class FooterComponent{
   { 
     this.targetid= event.target.id;
     if (this.targetid == "RepArtista") {
-      console.log(this.targetid);
       this.playartista();
     }
   }
@@ -59,7 +58,6 @@ export class FooterComponent{
   public playartista(){
     this.SetPlatList();
      if (this.ValidadorJson) {
-      console.log(this.PlayList[0].preview_url);
        this.OpenFile(this.PlayList[0].preview_url);
        this.Numero = 0;
        this.PlayPause = 1;
@@ -96,8 +94,9 @@ export class FooterComponent{
   }
 
   public Pre(){
-    if (this.Numero ! = 0 ) {
-        this.Numero--
+    debugger;
+    if (this.Numero >= 0 ) {
+        this.Numero = this.Numero-1;
         this.OpenFile(this.PlayList[this.Numero].preview_url);
         this.album = this.PlayList[this.Numero].album;
     }
@@ -130,7 +129,6 @@ export class FooterComponent{
         this.Duration = 0 ;
         this.CurrentTime = this.audioObj.currentTime;
         this.Duration =  this.audioObj.duration;
-       
         if (this.CurrentTime == this.Duration ) {
           this.Next();
         }
@@ -173,8 +171,6 @@ export class FooterComponent{
 
     if (this.ValidadorJson) {
       this.PlayList.splice(0, this.PlayList.length);
-
-      console.log(filesJson);
       for (let i = 0; i < filesJson.length; i++) {
        if (filesJson[i].preview_url != null) {
         this.PlayList.push({
@@ -188,7 +184,6 @@ export class FooterComponent{
   }
 
   private removeDatos(){
-
     localStorage.removeItem("files");
     localStorage.removeItem("Validador");
   }

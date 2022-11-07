@@ -15,17 +15,20 @@ export class TarjetasComponent   {
 
 
   public GetBuscadorAlbun(DatosBusqueda:any){
-    this.router.navigate(['Spotify','albun',DatosBusqueda]);
+    this.router.navigate(['Spotify/albun',DatosBusqueda]);
   }
 
   public GetBuscadorArtista(DatosBusqueda:any){
-    this.router.navigate(['Spotify','artista',DatosBusqueda]);
+    this.router.navigate(['Spotify/artista',DatosBusqueda]);
   }
 
   public GetBuscadorCategoria(DatosBusqueda:any){
-    this.router.navigate(['Spotify/categories/categoria',DatosBusqueda]);
+    this.router.navigate(['Spotify/Categorias/Categoria',DatosBusqueda]);
   }
 
+  public GetBuscadorAlbums(DatosBusqueda:any){
+    this.router.navigate(['Spotify/Categoria',DatosBusqueda]);
+  }
 
 }
 

@@ -118,6 +118,9 @@
   .current-track__options {
     width: 33%;
   }
+  .max-overflow{
+    width: 10%;
+  }
 }
 @media (max-width: 980px) {
   .current-track__actions {
@@ -128,6 +131,9 @@
   }
   .current-track__options {
     width: 40%;
+  }
+  .max-overflow{
+    width: 10%;
   }
 }
 @media (max-width: 768px) {
@@ -140,6 +146,7 @@
   .current-track__options {
     width: 100%;
   }
+  
 }
 @media (max-width: 480px) {
   .current-track__actions {
@@ -156,14 +163,6 @@
     padding: 5px 0;
   }
 }
-
-
-
-
-
-
-
-
 
 
 

@@ -15,6 +15,8 @@ export class AppComponent implements OnInit, OnDestroy{
      
       this.spotyfyService.GetToken();
       this.spotyfyService.SetTtoken();
+      this.spotyfyService.GetToken();
+      this.spotyfyService.SetTtoken();
   };
 
   ngOnDestroy(){

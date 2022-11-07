@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotyfyService } from '../../services/spotyfy.service'
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-categoria',
@@ -10,44 +11,39 @@ import { ActivatedRoute } from '@angular/router';
 export class CategoriaComponent implements OnInit {
 
   public GetCategories:any;
-
+  public paramsrouter:string;
+  public GetAlbumsTras : any;
+  public GetAlbumsIdTras:any;
+  public GetAlbumsIdTras2:any;
   constructor(
     private router:ActivatedRoute,
     private spotyfyService:SpotyfyService) { }
 
   ngOnInit(): void {
+
     this.router.params.subscribe(
       params =>{
-        console.log(params['idcategoria'] );
+        this.paramsrouter = params['idcategoria']
       }
     );
-
-    this.spotyfyService.GetCategories()
-    .subscribe((GetCategories:any) => {
-      this.GetCategories = GetCategories;
-      //console.log('GetCategories:',GetCategories );
+    
+    this.spotyfyService.GetCategoriesplaylists(this.paramsrouter)
+    .subscribe((GetAlbumsTrass:any) => {
+      this.GetAlbumsTras = GetAlbumsTrass;
     }),(errorser)=> {
       console.log(errorser.error.error);
     }
-    
 
-    this.spotyfyService.GetNewgeturl("https://api.spotify.com/v1/browse/categories/0JQ5DAqbMKFAXlCG6QvYQ4/playlists?country=SE&limit=10&offset=5")
+
+    /*
+    this.spotyfyService.GetCategoriesplayliststracks('37i9dQZF1DWU8quswnFt3c')
     .subscribe((GetAlbumsTras:any) => {
-      //console.log(GetAlbumsTras);
+      console.log(GetAlbumsTras);
       
     }),(errorser)=> {
       console.log(errorser.error.error);
     }
-
-
-    
-    this.spotyfyService.GetNewgeturl("https://api.spotify.com/v1/playlists/37i9dQZF1DX37bXS7EGI3f/tracks")
-    .subscribe((GetAlbumsTras:any) => {
-      //console.log(GetAlbumsTras);    
-    }),(errorser)=> {
-      console.log(errorser.error.error);
-    }
-
+*/
 
   }
 

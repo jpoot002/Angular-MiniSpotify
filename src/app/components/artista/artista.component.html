@@ -46,8 +46,6 @@ url({{GetAlbumsID.images[0].url | pipeImage}}); ">
 </div>
 
 
-
-
 <div class="container-xl">
   <div class="tab-content">
   
@@ -60,7 +58,7 @@ url({{GetAlbumsID.images[0].url | pipeImage}}); ">
         </div>
     
         <div class="album" >
-          <div class="tracks ">
+          <div class="tracks" style="padding-bottom: 60px; ">
             <div class="track row" *ngFor="let tracks of GetAlbumsIdTras ;let indice=index" >
               <div class="track__number col" >
                 {{indice+1}} 

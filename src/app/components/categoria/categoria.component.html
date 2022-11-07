@@ -1,5 +1,11 @@
-   <h1>si llega a categoria</h1>
+   <app-tarjetas *ngIf="GetAlbumsTras.items.length> 0"  [Newreleases]="GetAlbumsTras.items"  [Numero]=3> </app-tarjetas>
 
 
-  
+   <!--
+
+   <div class="track row" *ngFor="let tracks of GetAlbumsTras.items ;let indice;">
+      <h1>{{tracks.name}}</h1>
+   </div>
+
+   --->
   

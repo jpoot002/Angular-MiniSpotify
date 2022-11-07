@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
     this.loading= true;
     this.router.params.subscribe(
       params =>{
-        console.log(params['Titulo']);
         if (params['Titulo'] == "Lanzamientos") {
         this.Lanzamineto();
         this.Numero=1
@@ -54,7 +53,6 @@ export class HomeComponent implements OnInit {
     .subscribe((GetCategories:any) => {
       this.GetCategories = GetCategories;
       this.loading= false;
-      console.log('GetCategories:',GetCategories );
     }),(errorser)=> {
       console.log(errorser.error.error);
     }
@@ -62,7 +60,6 @@ export class HomeComponent implements OnInit {
 
     this.spotyfyService.GetNewgeturl("https://api.spotify.com/v1/browse/categories/0JQ5DAqbMKFAXlCG6QvYQ4/playlists?country=SE&limit=10&offset=5")
     .subscribe((GetAlbumsTras:any) => {
-      console.log(GetAlbumsTras);
     }),(errorser)=> {
       console.log(errorser.error.error);
     }
